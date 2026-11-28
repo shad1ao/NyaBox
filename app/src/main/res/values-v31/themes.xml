@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Wallpaper colors. Only applied on Android 12+; Theme.kt falls back below that. -->
+    <style name="Theme.SagerNet.Dynamic" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
+        <item name="actionBarStyle">@style/Widget.Material3.ActionBar.Solid</item>
+        <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
+        <item name="navigationViewStyle">@style/Widget.SagerNet.NavigationView</item>
+        <item name="android:colorBackground">?attr/colorSurfaceContainer</item>
+        <item name="android:windowBackground">?attr/colorSurfaceContainer</item>
+        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.Material3.Toolbar.Surface</item>
+        <item name="materialButtonStyle">@style/Widget.Material3.Button</item>
+        <item name="borderlessButtonStyle">@style/Widget.Material3.Button.TextButton</item>
+        <item name="floatingActionButtonStyle">@style/Widget.Material3.FloatingActionButton.Primary</item>
+        <item name="materialCardViewStyle">@style/Widget.SagerNet.Card</item>
+        <item name="tabStyle">@style/Widget.Material3.TabLayout</item>
+        <item name="switchStyle">@style/Widget.Material3.CompoundButton.Switch</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Material3.BottomSheetDialog</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.SagerNet</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_navigation_close</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="chipStyle">@style/Widget.Material3.Chip.Filter.SagerNet</item>
+        <item name="itemShapeAppearance">@style/ShapeAppearance.Material3.MediumComponent</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.SagerNet</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.SagerNet</item>
+        <item name="colorMaterial100">?attr/colorPrimaryContainer</item>
+        <item name="colorMaterial300">?attr/colorPrimary</item>
+        <item name="accentOrTextSecondary">?attr/colorSecondary</item>
+        <item name="accentOrTextPrimary">?attr/colorSecondary</item>
+        <item name="primaryOrTextSecondary">?attr/colorPrimary</item>
+        <item name="primaryOrTextPrimary">?attr/colorPrimary</item>
+        <item name="itemShapeFillColor">?attr/colorSecondary</item>
+        <item name="fabColorBackground">?attr/colorPrimaryContainer</item>
+        <item name="fabIconTint">?attr/colorOnPrimaryContainer</item>
+        <item name="selectedColorPrimary">?attr/colorPrimary</item>
+        <item name="whiteOrTextPrimary">?attr/colorOnSurface</item>
+        <item name="tabTextColor">?attr/colorOnSurfaceVariant</item>
+        <item name="tabSelectedTextColor">?attr/colorPrimary</item>
+        <item name="tabIndicatorColor">?attr/colorPrimary</item>
+        <item name="tabRippleColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.SagerNet.Dialog.Dynamic" parent="Theme.Material3.DayNight.Dialog.Alert">
+        <item name="actionBarStyle">@style/Widget.Material3.ActionBar.Solid</item>
+        <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
+        <item name="materialButtonStyle">@style/Widget.Material3.Button</item>
+        <item name="borderlessButtonStyle">@style/Widget.Material3.Button.TextButton</item>
+        <item name="floatingActionButtonStyle">@style/Widget.Material3.FloatingActionButton.Primary</item>
+        <item name="materialCardViewStyle">@style/Widget.SagerNet.Card</item>
+        <item name="switchStyle">@style/Widget.Material3.CompoundButton.Switch</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Material3.BottomSheetDialog</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.SagerNet</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_navigation_close</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="chipStyle">@style/Widget.Material3.Chip.Filter.SagerNet</item>
+        <item name="itemShapeAppearance">@style/ShapeAppearance.Material3.MediumComponent</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.SagerNet</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.SagerNet</item>
+        <item name="windowFixedHeightMajor" type="dimen">95%</item>
+        <item name="colorMaterial100">?attr/colorPrimaryContainer</item>
+        <item name="colorMaterial300">?attr/colorPrimary</item>
+        <item name="accentOrTextSecondary">?attr/colorSecondary</item>
+        <item name="accentOrTextPrimary">?attr/colorSecondary</item>
+        <item name="primaryOrTextSecondary">?attr/colorPrimary</item>
+        <item name="primaryOrTextPrimary">?attr/colorPrimary</item>
+        <item name="itemShapeFillColor">?attr/colorSecondary</item>
+        <item name="fabColorBackground">?attr/colorPrimaryContainer</item>
+        <item name="fabIconTint">?attr/colorOnPrimaryContainer</item>
+        <item name="selectedColorPrimary">?attr/colorPrimary</item>
+        <item name="whiteOrTextPrimary">?attr/colorOnSurface</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.Material3.Toolbar.Surface</item>
+    </style>
+
+</resources>

@@ -8,12 +8,18 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.RemoteException
+import android.view.Gravity
 import android.view.KeyEvent
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.addCallback
 import androidx.annotation.IdRes
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.preference.PreferenceDataStore
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
@@ -53,6 +59,7 @@ import io.nekohasekai.sagernet.ktx.runOnIoDispatcher
 import io.nekohasekai.sagernet.ktx.runOnMainDispatcher
 import io.nekohasekai.sagernet.update.AppUpdate
 import io.nekohasekai.sagernet.update.AppUpdatePrompt
+import io.nekohasekai.sagernet.widget.installModalDrawerContainer
 import io.nekohasekai.sagernet.update.NyaBoxUpdateClient
 import io.nekohasekai.sagernet.update.UpdateOutcome
 import moe.matsuri.nb4a.utils.Util
@@ -83,6 +90,7 @@ class MainActivity : ThemedActivity(),
             navigation = binding.navViewBlack
             binding.drawerLayout.removeView(binding.navView)
         }
+        navigation.installModalDrawerContainer()
         navigation.setNavigationItemSelectedListener(this)
 
         if (savedInstanceState == null) {
@@ -104,6 +112,12 @@ class MainActivity : ThemedActivity(),
         binding.stats.setOnClickListener { if (DataStore.serviceState.connected) binding.stats.testConnection() }
 
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.coordinator) { _, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.fragmentHolder.updatePadding(bottom = bars.bottom)
+            placeConnectionButton()
+            insets
+        }
         changeState(BaseService.State.Idle)
         connection.connect(this, this)
         DataStore.configurationStore.registerChangeListener(this)
@@ -400,7 +414,55 @@ class MainActivity : ThemedActivity(),
 
         binding.fab.changeState(state, DataStore.serviceState, animate)
         binding.stats.changeState(state)
+        placeConnectionButton()
+        binding.fab.post {
+            placeConnectionButton()
+            (supportFragmentManager.findFragmentById(R.id.fragment_holder) as? ConfigurationFragment)
+                ?.getCurrentGroupFragment()
+                ?.applyChromeInsets()
+        }
         if (msg != null) snackbar(getString(R.string.vpn_error, msg)).show()
+    }
+
+    /**
+     * Keeps the connection button in the Material 3 end slot.
+     *
+     * Disconnected, it floats 16dp above the navigation bar. Connected, it sits in the
+     * stats bar's content area, 16dp from the end, and follows that bar while it hides.
+     * It is not anchored to the bar: [com.google.android.material.bottomappbar.BottomAppBar]
+     * then translates a dependent button from the center, which shifts the paper-plane
+     * icon once the connection is on.
+     */
+    internal fun placeConnectionButton() {
+        val fab = binding.fab
+        val lp = fab.layoutParams as? CoordinatorLayout.LayoutParams ?: return
+        val density = resources.displayMetrics.density
+        val nav = ViewCompat.getRootWindowInsets(binding.coordinator)
+            ?.getInsets(WindowInsetsCompat.Type.systemBars())?.bottom ?: 0
+        val end = (16 * density).toInt()
+        val bar = binding.stats
+        val docked = DataStore.serviceState.connected && bar.allowShow
+        val bottom = if (docked && bar.height > 0) {
+            val fabSize = fab.height.takeIf { it > 0 } ?: (56 * density).toInt()
+            (bar.height + bar.paddingBottom - fabSize) / 2
+        } else {
+            nav + end
+        }
+        val changed = lp.anchorId != View.NO_ID ||
+            lp.gravity != (Gravity.BOTTOM or Gravity.END) ||
+            lp.bottomMargin != bottom ||
+            lp.marginEnd != end ||
+            lp.marginStart != 0
+        lp.anchorId = View.NO_ID
+        lp.anchorGravity = Gravity.NO_GRAVITY
+        lp.gravity = Gravity.BOTTOM or Gravity.END
+        lp.topMargin = 0
+        lp.marginStart = 0
+        lp.marginEnd = end
+        lp.bottomMargin = bottom
+        fab.translationX = 0f
+        fab.translationY = if (docked) binding.stats.translationY else 0f
+        if (changed) fab.layoutParams = lp
     }
 
     override fun snackbarInternal(text: CharSequence): Snackbar {

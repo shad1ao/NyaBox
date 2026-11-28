@@ -2,7 +2,6 @@ package io.nekohasekai.sagernet.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.SystemClock
 import android.provider.OpenableColumns
@@ -19,13 +18,18 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.net.toUri
+import androidx.core.view.MenuCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.view.size
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceDataStore
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -33,6 +37,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -150,6 +156,16 @@ class ConfigurationFragment @JvmOverloads constructor(
                 DataStore.selectedGroup = adapter.groupList[position].id
             }
         }
+
+        override fun onPageSelected(position: Int) {
+            view?.post { getCurrentGroupFragment()?.applyChromeInsets() }
+        }
+    }
+
+    fun bindLiftTarget(list: RecyclerView) {
+        val appBar = view?.findViewById<com.google.android.material.appbar.AppBarLayout>(R.id.appbar)
+            ?: return
+        appBar.setLiftOnScrollTargetView(list)
     }
 
     override fun onQueryTextChange(query: String): Boolean {
@@ -177,6 +193,10 @@ class ConfigurationFragment @JvmOverloads constructor(
 
         if (!select) {
             toolbar.inflateMenu(R.menu.add_profile_menu)
+            MenuCompat.setGroupDividerEnabled(toolbar.menu, true)
+            toolbar.menu.findItem(R.id.action_misc)?.subMenu?.let {
+                MenuCompat.setGroupDividerEnabled(it, true)
+            }
             toolbar.setOnMenuItemClickListener(this)
         } else {
             toolbar.setTitle(titleRes)
@@ -1209,6 +1229,43 @@ class ConfigurationFragment @JvmOverloads constructor(
 
             }
 
+            configurationListView.clipToPadding = true
+            applyChromeInsets()
+            val activity = activity as? MainActivity
+            activity?.binding?.stats?.addOnLayoutChangeListener(statsLayoutListener)
+            ViewCompat.setOnApplyWindowInsetsListener(configurationListView) { _, insets ->
+                configurationListView.post { applyChromeInsets() }
+                insets
+            }
+        }
+
+        private val statsLayoutListener = View.OnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+            if (::configurationListView.isInitialized) applyChromeInsets()
+        }
+
+        fun applyChromeInsets() {
+            if (!::configurationListView.isInitialized) return
+            val list = configurationListView
+            val host = activity as? MainActivity
+            val nav = ViewCompat.getRootWindowInsets(list)
+                ?.getInsets(WindowInsetsCompat.Type.systemBars())?.bottom ?: 0
+            val connected = host != null &&
+                DataStore.serviceState.connected &&
+                host.binding.stats.allowShow
+            val statsHeight = host?.binding?.stats?.height ?: 0
+            list.updatePadding(
+                bottom = if (connected && statsHeight > 0) {
+                    (statsHeight - nav).coerceAtLeast(dp2px(48)) + dp2px(8)
+                } else {
+                    dp2px(80)
+                }
+            )
+            (parentFragment as? ConfigurationFragment)?.bindLiftTarget(list)
+        }
+
+        override fun onDestroyView() {
+            (activity as? MainActivity)?.binding?.stats?.removeOnLayoutChangeListener(statsLayoutListener)
+            super.onDestroyView()
         }
 
         override fun onDestroy() {
@@ -1479,12 +1536,22 @@ class ConfigurationFragment @JvmOverloads constructor(
             val profileStatus: TextView = view.findViewById(R.id.profile_status)
 
             val trafficText: TextView = view.findViewById(R.id.traffic_text)
-            val selectedView: LinearLayout = view.findViewById(R.id.selected_view)
             val editButton: ImageView = view.findViewById(R.id.edit)
             val shareLayout: LinearLayout = view.findViewById(R.id.share)
-            val shareLayer: LinearLayout = view.findViewById(R.id.share_layer)
             val shareButton: ImageView = view.findViewById(R.id.shareIcon)
             val removeButton: ImageView = view.findViewById(R.id.remove)
+
+            fun applySelection(selected: Boolean) {
+                val card = view as? MaterialCardView ?: return
+                card.strokeWidth = 0
+                card.setCardBackgroundColor(
+                    MaterialColors.getColor(
+                        card,
+                        if (selected) com.google.android.material.R.attr.colorSecondaryContainer
+                        else com.google.android.material.R.attr.colorSurfaceContainerLowest
+                    )
+                )
+            }
 
             fun bind(proxyEntity: ProxyEntity, trafficData: TrafficData? = null) {
                 val pf = parentFragment as? ConfigurationFragment ?: return
@@ -1505,7 +1572,7 @@ class ConfigurationFragment @JvmOverloads constructor(
                                 lastSelected = DataStore.selectedProxy
                                 DataStore.selectedProxy = proxyEntity.id
                                 onMainDispatcher {
-                                    selectedView.visibility = View.VISIBLE
+                                    applySelection(true)
                                 }
                             }
 
@@ -1529,7 +1596,9 @@ class ConfigurationFragment @JvmOverloads constructor(
 
                 profileName.text = proxyEntity.displayName()
                 profileType.text = proxyEntity.displayType()
-                profileType.setTextColor(requireContext().getProtocolColor(proxyEntity.type))
+                profileType.setTextColor(
+                    MaterialColors.getColor(profileType, androidx.appcompat.R.attr.colorPrimary)
+                )
 
                 var rx = proxyEntity.rx
                 var tx = proxyEntity.tx
@@ -1623,12 +1692,16 @@ class ConfigurationFragment @JvmOverloads constructor(
                     onMainDispatcher {
                         editButton.isEnabled = !started
                         removeButton.isEnabled = !started
-                        selectedView.visibility = if (selected) View.VISIBLE else View.INVISIBLE
+                        applySelection(selected)
                     }
 
                     fun showShare(anchor: View) {
-                        val popup = PopupMenu(requireContext(), anchor)
+                        val popup = PopupMenu(
+                            ContextThemeWrapper(requireContext(), R.style.ThemeOverlay_SagerNet_PopupMenu),
+                            anchor,
+                        )
                         popup.menuInflater.inflate(R.menu.profile_share_menu, popup.menu)
+                        MenuCompat.setGroupDividerEnabled(popup.menu, true)
 
                         when {
                             !proxyEntity.haveStandardLink() -> {
@@ -1654,9 +1727,13 @@ class ConfigurationFragment @JvmOverloads constructor(
 
                     if (!(select || proxyEntity.type == ProxyEntity.TYPE_CHAIN)) {
                         onMainDispatcher {
-                            shareLayer.setBackgroundColor(Color.TRANSPARENT)
                             shareButton.setImageResource(R.drawable.ic_social_share)
-                            shareButton.setColorFilter(Color.GRAY)
+                            shareButton.imageTintList = android.content.res.ColorStateList.valueOf(
+                                MaterialColors.getColor(
+                                    shareButton,
+                                    com.google.android.material.R.attr.colorOnSurfaceVariant,
+                                )
+                            )
                             shareButton.isVisible = true
 
                             shareLayout.setOnClickListener {

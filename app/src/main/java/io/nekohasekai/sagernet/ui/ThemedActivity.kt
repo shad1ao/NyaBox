@@ -1,19 +1,21 @@
 package io.nekohasekai.sagernet.ui
 
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import android.view.View
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.snackbar.Snackbar
 import io.nekohasekai.sagernet.R
 import io.nekohasekai.sagernet.utils.Theme
+import io.nekohasekai.sagernet.widget.installTonalNavigationButton
 
 abstract class ThemedActivity : AppCompatActivity {
     constructor() : super()
@@ -32,22 +34,32 @@ abstract class ThemedActivity : AppCompatActivity {
         Theme.applyNightTheme()
 
         super.onCreate(savedInstanceState)
+        if (!isDialog) {
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+        }
+        Theme.applySystemBars(this)
 
         uiMode = resources.configuration.uiMode
 
-        if (Build.VERSION.SDK_INT >= 35) {
+        if (!isDialog) {
             ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { _, insets ->
-                val top = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
-                findViewById<AppBarLayout>(R.id.appbar)?.apply {
-                    updatePadding(top = top)
-//                Logs.w("appbar $top")
-                }
-//            findViewById<NavigationView>(R.id.nav_view)?.apply {
-//                updatePadding(top = top)
-//            }
+                val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                findViewById<AppBarLayout>(R.id.appbar)?.updatePadding(top = bars.top)
+                findViewById<android.view.View>(R.id.nav_view)?.updatePadding(top = bars.top)
+                findViewById<android.view.View>(R.id.nav_view_black)?.updatePadding(top = bars.top)
                 insets
             }
         }
+    }
+
+    override fun setContentView(layoutResID: Int) {
+        super.setContentView(layoutResID)
+        findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)?.installTonalNavigationButton()
+    }
+
+    override fun setContentView(view: View?) {
+        super.setContentView(view)
+        findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)?.installTonalNavigationButton()
     }
 
     override fun setTheme(resId: Int) {

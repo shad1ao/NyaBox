@@ -10,11 +10,14 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.text.util.Linkify
 import android.view.View
+import androidx.core.widget.NestedScrollView
+import com.google.android.material.card.MaterialCardView
 import androidx.activity.result.component1
 import androidx.activity.result.component2
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import io.nekohasekai.sagernet.widget.Material3GroupedListDecoration
 import com.danielstone.materialaboutlibrary.MaterialAboutFragment
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard
@@ -107,7 +110,7 @@ class AboutFragment : ToolbarFragment(R.layout.layout_about) {
                             MaterialAboutActionItem.Builder()
                                 .icon(R.drawable.ic_baseline_layers_24)
                                 .text(getString(R.string.version_x, "sing-box"))
-                                .subText(Libcore.versionBox())
+                                .subText(Libcore.versionBox().replace(",", ",\u200B"))
                                 .setOnClickAction { }
                                 .build())
                         .apply {
@@ -212,8 +215,52 @@ class AboutFragment : ToolbarFragment(R.layout.layout_about) {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-            view.findViewById<RecyclerView>(R.id.mal_recyclerview).apply {
-                overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            // The about library calls setCardElevation(mal_card_elevation) while binding,
+            // which puts the 2dp shadow back after the flat card style is inflated.
+            val cards = view.findViewById<RecyclerView>(R.id.mal_recyclerview)
+            cards.overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            cards.isFocusable = false
+            cards.isFocusableInTouchMode = false
+            cards.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+                flattenAboutCards(cards)
+            }
+            cards.addOnChildAttachStateChangeListener(object : RecyclerView.OnChildAttachStateChangeListener {
+                override fun onChildViewAttachedToWindow(child: View) {
+                    flattenAboutCard(child)
+                    val rows = child.findViewById<RecyclerView>(R.id.mal_card_recyclerview) ?: return
+                    rows.isFocusable = false
+                    rows.isFocusableInTouchMode = false
+                    if ((0 until rows.itemDecorationCount).none {
+                            rows.getItemDecorationAt(it) is Material3GroupedListDecoration
+                        }
+                    ) {
+                        rows.addItemDecoration(
+                            Material3GroupedListDecoration(rows) { _, _ -> false }
+                        )
+                    }
+                }
+
+                override fun onChildViewDetachedFromWindow(child: View) {}
+            })
+            // A focused child inside this scroll view pulls the title card under the app bar.
+            var ancestor = view.parent
+            while (ancestor is View && ancestor !is NestedScrollView) ancestor = ancestor.parent
+            (ancestor as? NestedScrollView)?.post { ancestor.scrollTo(0, 0) }
+        }
+
+        private fun flattenAboutCards(cards: RecyclerView) {
+            for (index in 0 until cards.childCount) {
+                flattenAboutCard(cards.getChildAt(index))
+            }
+        }
+
+        private fun flattenAboutCard(child: View) {
+            val card = child as? MaterialCardView ?: return
+            card.stateListAnimator = null
+            if (card.cardElevation != 0f || card.maxCardElevation != 0f || card.translationZ != 0f) {
+                card.cardElevation = 0f
+                card.maxCardElevation = 0f
+                card.translationZ = 0f
             }
         }
 

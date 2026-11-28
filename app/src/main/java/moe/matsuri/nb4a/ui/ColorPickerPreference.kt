@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.res.TypedArrayUtils
@@ -20,6 +21,7 @@ import androidx.preference.PreferenceViewHolder
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.nekohasekai.sagernet.R
 import io.nekohasekai.sagernet.ktx.getColorAttr
+import io.nekohasekai.sagernet.utils.Theme
 import kotlin.math.roundToInt
 
 class ColorPickerPreference
@@ -100,6 +102,34 @@ class ColorPickerPreference
                     }
                 }
                 addView(view)
+            }
+
+            if (Theme.dynamicColorAvailable()) {
+                val label = context.getString(R.string.theme_dynamic)
+                addView(LinearLayout(context).apply {
+                    orientation = LinearLayout.VERTICAL
+                    gravity = Gravity.CENTER_HORIZONTAL
+                    contentDescription = label
+                    val icon = ImageView(context).apply {
+                        val factor = context.resources.displayMetrics.density
+                        val size = (64 * factor).roundToInt()
+                        layoutParams = ViewGroup.LayoutParams(size, size)
+                        setImageResource(R.drawable.ic_theme_dynamic)
+                        contentDescription = label
+                    }
+                    val caption = TextView(context).apply {
+                        text = label
+                        textSize = 11f
+                        gravity = Gravity.CENTER
+                    }
+                    addView(icon)
+                    addView(caption)
+                    setOnClickListener {
+                        persistInt(Theme.DYNAMIC)
+                        dialog.dismiss()
+                        callChangeListener(Theme.DYNAMIC)
+                    }
+                })
             }
 
         }

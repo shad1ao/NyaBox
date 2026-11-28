@@ -1,6 +1,5 @@
 package io.nekohasekai.sagernet.ktx
 
-import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -18,7 +17,7 @@ fun Fragment.alert(text: String) = requireContext().alert(text)
 
 fun AlertDialog.tryToShow() {
     try {
-        val activity = context as Activity
+        val activity = context.findActivity() ?: return
         if (!activity.isFinishing) {
             show()
         }

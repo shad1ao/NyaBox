@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.*
@@ -400,8 +401,12 @@ class GroupFragment : ToolbarFragment(R.layout.layout_group),
             optionsButton.setOnClickListener {
                 selectedGroup = proxyGroup
 
-                val popup = PopupMenu(requireContext(), it)
+                val popup = PopupMenu(
+                    ContextThemeWrapper(requireContext(), R.style.ThemeOverlay_SagerNet_PopupMenu),
+                    it,
+                )
                 popup.menuInflater.inflate(R.menu.group_action_menu, popup.menu)
+                MenuCompat.setGroupDividerEnabled(popup.menu, true)
 
                 if (proxyGroup.type != GroupType.SUBSCRIPTION) {
                     popup.menu.removeItem(R.id.action_share_subscription)

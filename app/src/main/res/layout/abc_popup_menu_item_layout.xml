@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.view.menu.ListMenuItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="112dp"
+    android:orientation="vertical">
+
+    <!-- Group separator is a hairline. The library layout adds 4dp above and
+         below an almost invisible divider, which reads as a blank spacer. -->
+    <ImageView
+        android:id="@+id/group_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorOutlineVariant"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:duplicateParentState="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:duplicateParentState="true">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:duplicateParentState="true"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceLargePopupMenu"
+                android:textAlignment="viewStart" />
+
+            <TextView
+                android:id="@+id/shortcut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:duplicateParentState="true"
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceSmallPopupMenu"
+                android:textAlignment="viewStart" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/submenuarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:scaleType="center"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</androidx.appcompat.view.menu.ListMenuItemView>

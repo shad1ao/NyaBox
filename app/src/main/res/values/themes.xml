@@ -1,13 +1,32 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.SagerNet" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Solid</item>
+    <style name="Theme.SagerNet" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="actionBarStyle">@style/Widget.Material3.ActionBar.Solid</item>
+        <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
+        <item name="navigationViewStyle">@style/Widget.SagerNet.NavigationView</item>
+        <item name="materialButtonStyle">@style/Widget.Material3.Button</item>
+        <item name="borderlessButtonStyle">@style/Widget.Material3.Button.TextButton</item>
+        <item name="floatingActionButtonStyle">@style/Widget.Material3.FloatingActionButton.Primary</item>
+        <item name="materialCardViewStyle">@style/Widget.SagerNet.Card</item>
+        <item name="tabStyle">@style/Widget.SagerNet.TabLayout</item>
+        <item name="switchStyle">@style/Widget.Material3.CompoundButton.Switch</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Material3.BottomSheetDialog</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.SagerNet</item>
         <item name="actionModeCloseDrawable">@drawable/ic_navigation_close</item>
         <item name="colorButtonNormal">?colorAccent</item>
-        <item name="android:navigationBarColor">?colorPrimaryDark</item>
+        <item name="android:colorBackground">?attr/colorSurfaceContainer</item>
+        <item name="android:windowBackground">?attr/colorSurfaceContainer</item>
+        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
         <item name="colorPrimary">@color/material_pink_500</item>
         <item name="colorPrimaryDark">@color/material_pink_700</item>
+        <item name="colorOnPrimary">@color/white</item>
         <item name="colorAccent">@color/material_pink_accent_200</item>
+        <item name="colorSecondary">@color/material_pink_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="itemShapeFillColor">@color/material_pink_accent_200</item>
+        <item name="colorPrimaryContainer">?attr/colorMaterial100</item>
+        <item name="colorOnPrimaryContainer">?attr/colorPrimaryDark</item>
 
         <item name="colorMaterial100">@color/material_pink_100</item>
         <item name="colorMaterial300">@color/material_pink_300</item>
@@ -17,13 +36,15 @@
         <item name="primaryOrTextSecondary">?colorPrimary</item>
         <item name="primaryOrTextPrimary">?colorPrimary</item>
 
-        <item name="fabColorBackground">?colorPrimary</item>
-        <item name="selectedColorPrimary">?colorPrimary</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="tabTextColor">#99FFFFFF</item>
-        <item name="tabSelectedTextColor">@color/white</item>
-        <item name="tabIndicatorColor">@color/white</item>
-        <item name="tabRippleColor">@color/white</item>
+        <item name="fabColorBackground">?attr/colorPrimaryContainer</item>
+        <item name="fabIconTint">?attr/colorOnPrimaryContainer</item>
+        <item name="selectedColorPrimary">?attr/colorPrimary</item>
+        <item name="colorControlNormal">?attr/colorOnSurfaceVariant</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.Material3.Toolbar.Surface</item>
+        <item name="tabTextColor">?attr/colorOnSurfaceVariant</item>
+        <item name="tabSelectedTextColor">?attr/colorPrimary</item>
+        <item name="tabIndicatorColor">?attr/colorPrimary</item>
+        <item name="tabRippleColor">?attr/colorPrimary</item>
         <item name="whiteOrTextPrimary">@color/white</item>
 
         <item name="windowActionModeOverlay">true</item>
@@ -32,30 +53,39 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Choice.SagerNet</item>
+        <item name="chipStyle">@style/Widget.Material3.Chip.Filter.SagerNet</item>
 
-        <item name="itemShapeAppearance">
-            @style/ShapeAppearance.MaterialComponents.MediumComponent
-        </item>
+        <item name="itemShapeAppearance">@style/ShapeAppearance.Material3.MediumComponent</item>
 
-        <item name="alertDialogTheme">
-            @style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.SagerNet
-        </item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.SagerNet</item>
 
-        <item name="materialAlertDialogTheme">
-            @style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.SagerNet
-        </item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.SagerNet</item>
 
     </style>
 
-    <style name="Theme.SagerNet.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
-        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Solid</item>
+    <style name="Theme.SagerNet.Dialog" parent="Theme.Material3.DayNight.Dialog.Alert">
+        <item name="actionBarStyle">@style/Widget.Material3.ActionBar.Solid</item>
+        <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
+        <item name="materialButtonStyle">@style/Widget.Material3.Button</item>
+        <item name="borderlessButtonStyle">@style/Widget.Material3.Button.TextButton</item>
+        <item name="floatingActionButtonStyle">@style/Widget.Material3.FloatingActionButton.Primary</item>
+        <item name="materialCardViewStyle">@style/Widget.SagerNet.Card</item>
+        <item name="switchStyle">@style/Widget.Material3.CompoundButton.Switch</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Material3.BottomSheetDialog</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.SagerNet</item>
         <item name="actionModeCloseDrawable">@drawable/ic_navigation_close</item>
         <item name="colorButtonNormal">?colorAccent</item>
-        <item name="android:navigationBarColor">?colorPrimaryDark</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="colorPrimary">@color/material_pink_500</item>
         <item name="colorPrimaryDark">@color/material_pink_700</item>
+        <item name="colorOnPrimary">@color/white</item>
         <item name="colorAccent">@color/material_pink_accent_200</item>
+        <item name="colorSecondary">@color/material_pink_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="itemShapeFillColor">@color/material_pink_accent_200</item>
+        <item name="colorPrimaryContainer">?attr/colorMaterial100</item>
+        <item name="colorOnPrimaryContainer">?attr/colorPrimaryDark</item>
 
         <item name="colorMaterial100">@color/material_pink_100</item>
         <item name="colorMaterial300">@color/material_pink_300</item>
@@ -65,13 +95,15 @@
         <item name="primaryOrTextSecondary">?colorPrimary</item>
         <item name="primaryOrTextPrimary">?colorPrimary</item>
 
-        <item name="fabColorBackground">?colorPrimary</item>
-        <item name="selectedColorPrimary">?colorPrimary</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="tabTextColor">#99FFFFFF</item>
-        <item name="tabSelectedTextColor">@color/white</item>
-        <item name="tabIndicatorColor">@color/white</item>
-        <item name="tabRippleColor">@color/white</item>
+        <item name="fabColorBackground">?attr/colorPrimaryContainer</item>
+        <item name="fabIconTint">?attr/colorOnPrimaryContainer</item>
+        <item name="selectedColorPrimary">?attr/colorPrimary</item>
+        <item name="colorControlNormal">?attr/colorOnSurfaceVariant</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.Material3.Toolbar.Surface</item>
+        <item name="tabTextColor">?attr/colorOnSurfaceVariant</item>
+        <item name="tabSelectedTextColor">?attr/colorPrimary</item>
+        <item name="tabIndicatorColor">?attr/colorPrimary</item>
+        <item name="tabRippleColor">?attr/colorPrimary</item>
         <item name="whiteOrTextPrimary">@color/white</item>
 
         <item name="windowActionModeOverlay">true</item>
@@ -80,19 +112,13 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Choice.SagerNet</item>
+        <item name="chipStyle">@style/Widget.Material3.Chip.Filter.SagerNet</item>
 
-        <item name="itemShapeAppearance">
-            @style/ShapeAppearance.MaterialComponents.MediumComponent
-        </item>
+        <item name="itemShapeAppearance">@style/ShapeAppearance.Material3.MediumComponent</item>
 
-        <item name="alertDialogTheme">
-            @style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.SagerNet
-        </item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.SagerNet</item>
 
-        <item name="materialAlertDialogTheme">
-            @style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.SagerNet
-        </item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog.SagerNet</item>
 
         <item name="windowFixedHeightMajor" type="dimen">95%</item>
 
@@ -103,27 +129,21 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="ThemeOverlay.MaterialComponents.MaterialAlertDialog.SagerNet">
-        <item name="buttonBarPositiveButtonStyle">
-            @style/Widget.MaterialComponents.Button.TextButton.Dialog.Primary
-        </item>
-        <item name="buttonBarNegativeButtonStyle">
-            @style/Widget.MaterialComponents.Button.TextButton.Dialog.Primary
-        </item>
-        <item name="buttonBarNeutralButtonStyle">
-            @style/Widget.MaterialComponents.Button.TextButton.Dialog.Flush.Primary
-        </item>
+    <style name="ThemeOverlay.Material3.MaterialAlertDialog.SagerNet" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.Material3.Button.TextButton.Dialog.Primary</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.Material3.Button.TextButton.Dialog.Primary</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.Material3.Button.TextButton.Dialog.Flush.Primary</item>
     </style>
 
-    <style name="Widget.MaterialComponents.Button.TextButton.Dialog.Primary">
+    <style name="Widget.Material3.Button.TextButton.Dialog.Primary" parent="Widget.Material3.Button.TextButton.Dialog">
         <item name="android:textColor">?primaryOrTextPrimary</item>
     </style>
 
-    <style name="Widget.MaterialComponents.Button.TextButton.Dialog.Flush.Primary">
+    <style name="Widget.Material3.Button.TextButton.Dialog.Flush.Primary" parent="Widget.Material3.Button.TextButton.Dialog.Flush">
         <item name="android:textColor">?primaryOrTextPrimary</item>
     </style>
 
-    <style name="Widget.MaterialComponents.Chip.Choice.SagerNet">
+    <style name="Widget.Material3.Chip.Filter.SagerNet" parent="Widget.Material3.Chip.Filter">
         <item name="textStartPadding">30dp</item>
         <item name="textEndPadding">30dp</item>
         <item name="chipBackgroundColor">@color/chip_background</item>
@@ -136,6 +156,9 @@
         <item name="colorPrimary">@color/color_pink_ssr</item>
         <item name="colorPrimaryDark">@color/color_pink_ssr</item>
         <item name="colorAccent">@color/material_pink_accent_200</item>
+        <item name="colorSecondary">@color/material_pink_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="itemShapeFillColor">@color/material_pink_accent_200</item>
         <item name="colorMaterial100">@color/material_pink_accent_100</item>
         <item name="colorMaterial300">@color/color_pink_ssr</item>
     </style>
@@ -144,6 +167,10 @@
         <item name="colorPrimary">@color/material_amber_500</item>
         <item name="colorPrimaryDark">@color/material_amber_700</item>
         <item name="colorAccent">@color/material_amber_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_amber_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_amber_100</item>
         <item name="colorMaterial300">@color/material_amber_300</item>
     </style>
@@ -152,6 +179,9 @@
         <item name="colorPrimary">@color/material_blue_500</item>
         <item name="colorPrimaryDark">@color/material_blue_700</item>
         <item name="colorAccent">@color/material_blue_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_blue_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_blue_100</item>
         <item name="colorMaterial300">@color/material_blue_300</item>
     </style>
@@ -160,6 +190,9 @@
         <item name="colorPrimary">@color/material_blue_grey_500</item>
         <item name="colorPrimaryDark">@color/material_blue_grey_700</item>
         <item name="colorAccent">@color/material_blue_grey_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_blue_grey_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_blue_grey_100</item>
         <item name="colorMaterial300">@color/material_blue_grey_300</item>
     </style>
@@ -168,6 +201,9 @@
         <item name="colorPrimary">@color/material_brown_500</item>
         <item name="colorPrimaryDark">@color/material_brown_700</item>
         <item name="colorAccent">@color/material_brown_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_brown_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_brown_100</item>
         <item name="colorMaterial300">@color/material_brown_300</item>
     </style>
@@ -176,6 +212,10 @@
         <item name="colorPrimary">@color/material_cyan_500</item>
         <item name="colorPrimaryDark">@color/material_cyan_700</item>
         <item name="colorAccent">@color/material_cyan_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_cyan_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_cyan_100</item>
         <item name="colorMaterial300">@color/material_cyan_300</item>
     </style>
@@ -184,6 +224,9 @@
         <item name="colorPrimary">@color/material_deep_orange_500</item>
         <item name="colorPrimaryDark">@color/material_deep_orange_700</item>
         <item name="colorAccent">@color/material_deep_orange_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_deep_orange_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_deep_orange_100</item>
         <item name="colorMaterial300">@color/material_deep_orange_300</item>
     </style>
@@ -192,6 +235,9 @@
         <item name="colorPrimary">@color/material_deep_purple_500</item>
         <item name="colorPrimaryDark">@color/material_deep_purple_700</item>
         <item name="colorAccent">@color/material_deep_purple_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_deep_purple_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_deep_purple_100</item>
         <item name="colorMaterial300">@color/material_deep_purple_300</item>
     </style>
@@ -200,6 +246,10 @@
         <item name="colorPrimary">@color/material_green_500</item>
         <item name="colorPrimaryDark">@color/material_green_700</item>
         <item name="colorAccent">@color/material_green_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_green_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_green_100</item>
         <item name="colorMaterial300">@color/material_green_300</item>
     </style>
@@ -208,6 +258,10 @@
         <item name="colorPrimary">@color/material_grey_500</item>
         <item name="colorPrimaryDark">@color/material_grey_700</item>
         <item name="colorAccent">@color/material_grey_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_grey_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_grey_100</item>
         <item name="colorMaterial300">@color/material_grey_300</item>
     </style>
@@ -216,6 +270,9 @@
         <item name="colorPrimary">@color/material_indigo_500</item>
         <item name="colorPrimaryDark">@color/material_indigo_700</item>
         <item name="colorAccent">@color/material_indigo_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_indigo_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_indigo_100</item>
         <item name="colorMaterial300">@color/material_indigo_300</item>
     </style>
@@ -224,6 +281,10 @@
         <item name="colorPrimary">@color/material_light_blue_500</item>
         <item name="colorPrimaryDark">@color/material_light_blue_700</item>
         <item name="colorAccent">@color/material_light_blue_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_light_blue_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_light_blue_100</item>
         <item name="colorMaterial300">@color/material_light_blue_300</item>
     </style>
@@ -232,6 +293,10 @@
         <item name="colorPrimary">@color/material_light_green_500</item>
         <item name="colorPrimaryDark">@color/material_light_green_700</item>
         <item name="colorAccent">@color/material_light_green_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_light_green_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_light_green_100</item>
         <item name="colorMaterial300">@color/material_light_green_300</item>
     </style>
@@ -240,6 +305,10 @@
         <item name="colorPrimary">@color/material_lime_500</item>
         <item name="colorPrimaryDark">@color/material_lime_700</item>
         <item name="colorAccent">@color/material_lime_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_lime_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_lime_100</item>
         <item name="colorMaterial300">@color/material_lime_300</item>
     </style>
@@ -248,6 +317,10 @@
         <item name="colorPrimary">@color/material_orange_500</item>
         <item name="colorPrimaryDark">@color/material_orange_700</item>
         <item name="colorAccent">@color/material_orange_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_orange_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_orange_100</item>
         <item name="colorMaterial300">@color/material_orange_300</item>
     </style>
@@ -256,6 +329,9 @@
         <item name="colorPrimary">@color/material_purple_500</item>
         <item name="colorPrimaryDark">@color/material_purple_700</item>
         <item name="colorAccent">@color/material_purple_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_purple_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_purple_100</item>
         <item name="colorMaterial300">@color/material_purple_300</item>
     </style>
@@ -264,6 +340,9 @@
         <item name="colorPrimary">@color/material_red_500</item>
         <item name="colorPrimaryDark">@color/material_red_700</item>
         <item name="colorAccent">@color/material_red_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_red_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_red_100</item>
         <item name="colorMaterial300">@color/material_red_300</item>
     </style>
@@ -272,6 +351,9 @@
         <item name="colorPrimary">@color/material_teal_500</item>
         <item name="colorPrimaryDark">@color/material_teal_700</item>
         <item name="colorAccent">@color/material_teal_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_teal_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_teal_100</item>
         <item name="colorMaterial300">@color/material_teal_300</item>
     </style>
@@ -280,6 +362,10 @@
         <item name="colorPrimary">@color/material_yellow_500</item>
         <item name="colorPrimaryDark">@color/material_yellow_700</item>
         <item name="colorAccent">@color/material_yellow_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_yellow_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_yellow_100</item>
         <item name="colorMaterial300">@color/material_yellow_300</item>
         <item name="colorOnPrimarySurface">@color/black</item>
@@ -289,6 +375,10 @@
         <item name="colorPrimary">@color/material_amber_500</item>
         <item name="colorPrimaryDark">@color/material_amber_700</item>
         <item name="colorAccent">@color/material_amber_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_amber_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_amber_100</item>
         <item name="colorMaterial300">@color/material_amber_300</item>
     </style>
@@ -297,6 +387,9 @@
         <item name="colorPrimary">@color/material_blue_500</item>
         <item name="colorPrimaryDark">@color/material_blue_700</item>
         <item name="colorAccent">@color/material_blue_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_blue_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_blue_100</item>
         <item name="colorMaterial300">@color/material_blue_300</item>
     </style>
@@ -305,6 +398,9 @@
         <item name="colorPrimary">@color/material_blue_grey_500</item>
         <item name="colorPrimaryDark">@color/material_blue_grey_700</item>
         <item name="colorAccent">@color/material_blue_grey_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_blue_grey_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_blue_grey_100</item>
         <item name="colorMaterial300">@color/material_blue_grey_300</item>
     </style>
@@ -313,6 +409,9 @@
         <item name="colorPrimary">@color/material_brown_500</item>
         <item name="colorPrimaryDark">@color/material_brown_700</item>
         <item name="colorAccent">@color/material_brown_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_brown_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_brown_100</item>
         <item name="colorMaterial300">@color/material_brown_300</item>
     </style>
@@ -321,6 +420,10 @@
         <item name="colorPrimary">@color/material_cyan_500</item>
         <item name="colorPrimaryDark">@color/material_cyan_700</item>
         <item name="colorAccent">@color/material_cyan_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_cyan_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_cyan_100</item>
         <item name="colorMaterial300">@color/material_cyan_300</item>
     </style>
@@ -329,6 +432,9 @@
         <item name="colorPrimary">@color/material_deep_orange_500</item>
         <item name="colorPrimaryDark">@color/material_deep_orange_700</item>
         <item name="colorAccent">@color/material_deep_orange_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_deep_orange_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_deep_orange_100</item>
         <item name="colorMaterial300">@color/material_deep_orange_300</item>
     </style>
@@ -337,6 +443,9 @@
         <item name="colorPrimary">@color/material_deep_purple_500</item>
         <item name="colorPrimaryDark">@color/material_deep_purple_700</item>
         <item name="colorAccent">@color/material_deep_purple_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_deep_purple_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_deep_purple_100</item>
         <item name="colorMaterial300">@color/material_deep_purple_300</item>
     </style>
@@ -345,6 +454,10 @@
         <item name="colorPrimary">@color/material_green_500</item>
         <item name="colorPrimaryDark">@color/material_green_700</item>
         <item name="colorAccent">@color/material_green_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_green_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_green_100</item>
         <item name="colorMaterial300">@color/material_green_300</item>
     </style>
@@ -353,6 +466,10 @@
         <item name="colorPrimary">@color/material_grey_500</item>
         <item name="colorPrimaryDark">@color/material_grey_700</item>
         <item name="colorAccent">@color/material_grey_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_grey_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_grey_100</item>
         <item name="colorMaterial300">@color/material_grey_300</item>
     </style>
@@ -361,6 +478,9 @@
         <item name="colorPrimary">@color/material_indigo_500</item>
         <item name="colorPrimaryDark">@color/material_indigo_700</item>
         <item name="colorAccent">@color/material_indigo_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_indigo_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_indigo_100</item>
         <item name="colorMaterial300">@color/material_indigo_300</item>
     </style>
@@ -369,6 +489,10 @@
         <item name="colorPrimary">@color/material_light_blue_500</item>
         <item name="colorPrimaryDark">@color/material_light_blue_700</item>
         <item name="colorAccent">@color/material_light_blue_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_light_blue_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_light_blue_100</item>
         <item name="colorMaterial300">@color/material_light_blue_300</item>
     </style>
@@ -377,6 +501,10 @@
         <item name="colorPrimary">@color/material_light_green_500</item>
         <item name="colorPrimaryDark">@color/material_light_green_700</item>
         <item name="colorAccent">@color/material_light_green_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_light_green_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_light_green_100</item>
         <item name="colorMaterial300">@color/material_light_green_300</item>
     </style>
@@ -385,6 +513,10 @@
         <item name="colorPrimary">@color/material_lime_500</item>
         <item name="colorPrimaryDark">@color/material_lime_700</item>
         <item name="colorAccent">@color/material_lime_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_lime_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_lime_100</item>
         <item name="colorMaterial300">@color/material_lime_300</item>
     </style>
@@ -393,6 +525,10 @@
         <item name="colorPrimary">@color/material_orange_500</item>
         <item name="colorPrimaryDark">@color/material_orange_700</item>
         <item name="colorAccent">@color/material_orange_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_orange_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_orange_100</item>
         <item name="colorMaterial300">@color/material_orange_300</item>
     </style>
@@ -401,6 +537,9 @@
         <item name="colorPrimary">@color/material_purple_500</item>
         <item name="colorPrimaryDark">@color/material_purple_700</item>
         <item name="colorAccent">@color/material_purple_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_purple_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_purple_100</item>
         <item name="colorMaterial300">@color/material_purple_300</item>
     </style>
@@ -409,6 +548,9 @@
         <item name="colorPrimary">@color/material_red_500</item>
         <item name="colorPrimaryDark">@color/material_red_700</item>
         <item name="colorAccent">@color/material_red_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_red_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_red_100</item>
         <item name="colorMaterial300">@color/material_red_300</item>
     </style>
@@ -417,6 +559,9 @@
         <item name="colorPrimary">@color/color_pink_ssr</item>
         <item name="colorPrimaryDark">@color/color_pink_ssr</item>
         <item name="colorAccent">@color/material_pink_accent_200</item>
+        <item name="colorSecondary">@color/material_pink_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="itemShapeFillColor">@color/material_pink_accent_200</item>
         <item name="colorMaterial100">@color/material_pink_accent_100</item>
         <item name="colorMaterial300">@color/color_pink_ssr</item>
     </style>
@@ -425,6 +570,9 @@
         <item name="colorPrimary">@color/material_teal_500</item>
         <item name="colorPrimaryDark">@color/material_teal_700</item>
         <item name="colorAccent">@color/material_teal_accent_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/material_teal_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/material_teal_100</item>
         <item name="colorMaterial300">@color/material_teal_300</item>
     </style>
@@ -433,46 +581,222 @@
         <item name="colorPrimary">@color/material_yellow_500</item>
         <item name="colorPrimaryDark">@color/material_yellow_700</item>
         <item name="colorAccent">@color/material_yellow_accent_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/material_yellow_accent_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="whiteOrTextPrimary">@color/black</item>
         <item name="colorMaterial100">@color/material_yellow_100</item>
         <item name="colorMaterial300">@color/material_yellow_300</item>
         <item name="colorOnPrimarySurface">@color/black</item>
     </style>
 
     <style name="Theme.SagerNet.Black">
-        <item name="colorPrimary">@color/color_ng_black_primary</item>
+        <item name="colorPrimary">@color/color_ng_black_accent</item>
         <item name="colorPrimaryDark">@color/color_ng_black_primary</item>
         <item name="colorAccent">@color/color_ng_black_accent</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/color_ng_black_accent</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/color_ng_black_primary</item>
         <item name="colorMaterial300">@color/color_ng_black_primary</item>
 
         <item name="selectedColorPrimary">@color/color_ng_black_accent</item>
         <item name="fabColorBackground">@color/color_ng_black_accent</item>
+        <item name="fabIconTint">@color/black</item>
         <item name="itemShapeFillColor">@color/color_ng_black_accent</item>
 
         <item name="accentOrTextSecondary">?android:textColorSecondary</item>
         <item name="accentOrTextPrimary">?android:textColorPrimary</item>
         <item name="primaryOrTextSecondary">?android:textColorSecondary</item>
         <item name="primaryOrTextPrimary">?android:textColorPrimary</item>
+
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="colorSurfaceContainerLowest">#1C1C1C</item>
+        <item name="colorSurface">@android:color/black</item>
+        <item name="colorSurfaceVariant">#121212</item>
+        <item name="colorSurfaceContainer">#1E1E1E</item>
+        <item name="colorSurfaceContainerLow">#121212</item>
+        <item name="colorSurfaceContainerHigh">#2A2A2A</item>
+        <item name="colorSurfaceContainerHighest">#333333</item>
+        <item name="colorOutlineVariant">#3D3D3D</item>
+        <item name="colorSecondaryContainer">#333333</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurfaceVariant">#E0E0E0</item>
+        <item name="colorOnSecondaryContainer">@color/white</item>
+        <item name="tabSelectedTextColor">@color/color_ng_black_accent</item>
+        <item name="tabIndicatorColor">@color/color_ng_black_accent</item>
+        <item name="tabRippleColor">@color/color_ng_black_accent</item>
+        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">#B3FFFFFF</item>
     </style>
 
     <style name="Theme.SagerNet.Dialog.Black">
-        <item name="colorPrimary">@color/color_ng_black_primary</item>
+        <item name="colorPrimary">@color/color_ng_black_accent</item>
         <item name="colorPrimaryDark">@color/color_ng_black_primary</item>
         <item name="colorAccent">@color/color_ng_black_accent</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/color_ng_black_accent</item>
+        <item name="colorOnSecondary">@color/black</item>
         <item name="colorMaterial100">@color/color_ng_black_primary</item>
         <item name="colorMaterial300">@color/color_ng_black_primary</item>
 
         <item name="selectedColorPrimary">@color/color_ng_black_accent</item>
         <item name="fabColorBackground">@color/color_ng_black_accent</item>
+        <item name="fabIconTint">@color/black</item>
         <item name="itemShapeFillColor">@color/color_ng_black_accent</item>
 
         <item name="accentOrTextSecondary">?android:textColorSecondary</item>
         <item name="accentOrTextPrimary">?android:textColorPrimary</item>
         <item name="primaryOrTextSecondary">?android:textColorSecondary</item>
         <item name="primaryOrTextPrimary">?android:textColorPrimary</item>
+
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="colorSurfaceContainerLowest">#1C1C1C</item>
+        <item name="colorSurface">@android:color/black</item>
+        <item name="colorSurfaceVariant">#121212</item>
+        <item name="colorSurfaceContainer">#1E1E1E</item>
+        <item name="colorSurfaceContainerLow">#121212</item>
+        <item name="colorSurfaceContainerHigh">#2A2A2A</item>
+        <item name="colorSurfaceContainerHighest">#333333</item>
+        <item name="colorOutlineVariant">#3D3D3D</item>
+        <item name="colorSecondaryContainer">#333333</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurfaceVariant">#E0E0E0</item>
+        <item name="colorOnSecondaryContainer">@color/white</item>
+        <item name="tabSelectedTextColor">@color/color_ng_black_accent</item>
+        <item name="tabIndicatorColor">@color/color_ng_black_accent</item>
+        <item name="tabRippleColor">@color/color_ng_black_accent</item>
+        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">#B3FFFFFF</item>
     </style>
 
-    <style name="Theme.Start" parent="Theme.MaterialComponents.DayNight">
+    <style name="ShapeAppearance.SagerNet.Fab" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="PreferenceThemeOverlay.SagerNet" parent="PreferenceThemeOverlay">
+        <item name="android:textAppearanceListItem">@style/TextAppearance.Material3.BodyLarge</item>
+        <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Widget.SagerNet.AppBar" parent="Widget.Material3.AppBarLayout">
+        <item name="android:background">?attr/colorSurfaceContainer</item>
+        <item name="liftOnScroll">true</item>
+        <item name="liftOnScrollColor">?attr/colorSurfaceContainerHigh</item>
+        <item name="elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="Widget.SagerNet.Toolbar" parent="Widget.Material3.Toolbar.Surface">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="titleTextAppearance">@style/TextAppearance.Material3.TitleLarge</item>
+        <item name="titleTextColor">?attr/colorOnSurface</item>
+        <item name="navigationIconTint">?attr/colorOnSurface</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Material3.Toolbar.Surface</item>
+    </style>
+
+    <style name="Widget.SagerNet.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="tabIndicatorAnimationMode">elastic</item>
+        <item name="tabIndicatorColor">?attr/colorPrimary</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabPaddingStart">16dp</item>
+        <item name="tabPaddingEnd">16dp</item>
+        <item name="tabSelectedTextColor">?attr/colorPrimary</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Material3.LabelLarge</item>
+        <item name="tabTextColor">?attr/colorOnSurfaceVariant</item>
+        <item name="tabUnboundedRipple">false</item>
+    </style>
+
+    <style name="Widget.SagerNet.PopupMenu" parent="Widget.Material3.PopupMenu">
+        <item name="android:popupElevation">3dp</item>
+        <item name="android:popupBackground">@drawable/m3_popupmenu_background_overlay</item>
+    </style>
+
+    <style name="Widget.SagerNet.PopupMenu.Overflow" parent="Widget.Material3.PopupMenu.Overflow">
+        <item name="android:popupElevation">3dp</item>
+        <item name="android:popupBackground">@drawable/m3_popupmenu_background_overlay</item>
+    </style>
+
+    <style name="Widget.SagerNet.PopupMenu.ListPopupWindow" parent="Widget.Material3.PopupMenu.ListPopupWindow">
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:popupElevation">3dp</item>
+    </style>
+
+    <style name="ThemeOverlay.SagerNet.PopupMenu" parent="ThemeOverlay.Material3">
+        <item name="actionOverflowMenuStyle">@style/Widget.SagerNet.PopupMenu.Overflow</item>
+        <item name="android:listDivider">@null</item>
+        <item name="android:listPreferredItemHeightSmall">48dp</item>
+        <item name="android:listPreferredItemPaddingEnd">12dp</item>
+        <item name="android:listPreferredItemPaddingStart">12dp</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="colorControlNormal">?attr/colorOnSurfaceVariant</item>
+        <item name="dropdownListPreferredItemHeight">48dp</item>
+        <item name="listPopupWindowStyle">@style/Widget.SagerNet.PopupMenu.ListPopupWindow</item>
+        <item name="popupMenuBackground">@drawable/m3_popupmenu_background_overlay</item>
+        <item name="popupMenuStyle">@style/Widget.SagerNet.PopupMenu</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.Material3.BodyLarge</item>
+        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.Material3.BodyLarge</item>
+    </style>
+
+    <style name="ThemeOverlay.SagerNet.NavigationView" parent="ThemeOverlay.Material3.NavigationView">
+        <item name="android:listDivider">?attr/colorOutlineVariant</item>
+        <item name="android:listPreferredItemHeightSmall">56dp</item>
+    </style>
+
+    <style name="Widget.SagerNet.NavigationView" parent="Widget.Material3.NavigationView">
+        <item name="android:background">?attr/colorSurfaceContainerLow</item>
+        <item name="android:elevation">1dp</item>
+        <item name="bottomInsetScrimEnabled">false</item>
+        <item name="dividerInsetEnd">28dp</item>
+        <item name="dividerInsetStart">28dp</item>
+        <item name="drawerLayoutCornerSize">16dp</item>
+        <item name="elevation">1dp</item>
+        <item name="endInsetScrimEnabled">false</item>
+        <item name="itemHorizontalPadding">28dp</item>
+        <item name="itemIconPadding">12dp</item>
+        <item name="itemIconSize">24dp</item>
+        <item name="itemIconTint">@color/navigation_icon</item>
+        <item name="itemShapeAppearance">@style/ShapeAppearance.Material3.Corner.Full</item>
+        <item name="itemShapeFillColor">@color/navigation_item</item>
+        <item name="itemShapeInsetEnd">12dp</item>
+        <item name="itemShapeInsetStart">12dp</item>
+        <item name="itemTextAppearance">@style/TextAppearance.Material3.LabelLarge</item>
+        <item name="itemTextColor">@color/navigation_icon</item>
+        <item name="itemVerticalPadding">0dp</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.SagerNet.NavigationView</item>
+        <item name="startInsetScrimEnabled">false</item>
+        <item name="topInsetScrimEnabled">false</item>
+    </style>
+
+    <style name="Widget.SagerNet.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="android:elevation">0dp</item>
+        <item name="android:translationZ">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardMaxElevation">0dp</item>
+        <item name="cardUseCompatPadding">false</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainerLowest</item>
+    </style>
+
+    <style name="Theme.Start" parent="Theme.Material3.DayNight">
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>

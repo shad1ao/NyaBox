@@ -40,6 +40,7 @@ import io.nekohasekai.sagernet.fmt.AbstractBean
 import io.nekohasekai.sagernet.ktx.*
 import io.nekohasekai.sagernet.ui.ThemedActivity
 import io.nekohasekai.sagernet.widget.ListListener
+import io.nekohasekai.sagernet.widget.applyM3GroupedCards
 import kotlinx.parcelize.Parcelize
 import kotlin.properties.Delegates
 
@@ -231,6 +232,7 @@ abstract class ProfileSettingsActivity<T : AbstractBean>(
             super.onViewCreated(view, savedInstanceState)
 
             ViewCompat.setOnApplyWindowInsetsListener(listView, ListListener)
+            listView.applyM3GroupedCards()
 
             activity?.apply {
                 viewCreated(view, savedInstanceState)
